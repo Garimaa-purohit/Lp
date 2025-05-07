@@ -1,0 +1,112 @@
+1. Scientific Calculator
+ Apex Code Snippets for Basic Programs
+ public class ScientificCalculator {
+    public static Double calculate(String op, Double a, Double b) {
+        if(op == '+') return a + b;
+        if(op == '-') return a - b;
+        if(op == '*') return a * b;
+        if(op == '/') return a / b;
+        if(op == '^') return Math.pow(a, b);
+        return null;
+    }
+ }
+ System.debug(ScientificCalculator.calculate('+', 4, 5));
+ 2. Check Prime Number
+ public class PrimeCheck {
+    public static Boolean isPrime(Integer n) {
+        if(n <= 1) return false;
+        for(Integer i = 2; i*i <= n; i++) {
+            if(n % i == 0) return false;
+        }
+        return true;
+    }
+ }
+ System.debug(PrimeCheck.isPrime(29));
+ 3. Matrix Addition
+ public class MatrixAddition {
+    public static List<List<Integer>> add(List<List<Integer>> a, List<List<Integer>> b) {
+        List<List<Integer>> result = new List<List<Integer>>();
+        for(Integer i = 0; i < a.size(); i++) {
+            List<Integer> row = new List<Integer>();
+            for(Integer j = 0; j < a[i].size(); j++) {
+                row.add(a[i][j] + b[i][j]);
+            }
+            result.add(row);
+        }
+        return result;
+    }
+ }
+ List<List<Integer>> m1 = new List<List<Integer>>{new List<Integer>{1,2}, new List<Integer>{3,4}};
+ List<List<Integer>> m2 = new List<List<Integer>>{new List<Integer>{5,6}, new List<Integer>{7,8}};
+ System.debug(MatrixAddition.add(m1, m2));
+ 4. Matrix Multiplication
+ public class MatrixMultiplication {
+    public static List<List<Integer>> multiply(List<List<Integer>> a, List<List<Integer>> b) {
+        List<List<Integer>> result = new List<List<Integer>>();
+Apex Code Snippets for Basic Programs
+        for(Integer i = 0; i < a.size(); i++) {
+            List<Integer> row = new List<Integer>();
+            for(Integer j = 0; j < b[0].size(); j++) {
+                Integer sum = 0;
+                for(Integer k = 0; k < b.size(); k++) {
+                    sum += a[i][k] * b[k][j];
+                }
+                row.add(sum);
+            }
+            result.add(row);
+        }
+        return result;
+    }
+ }
+ List<List<Integer>> m1 = new List<List<Integer>>{new List<Integer>{1,2}, new List<Integer>{3,4}};
+ List<List<Integer>> m2 = new List<List<Integer>>{new List<Integer>{2,0}, new List<Integer>{1,2}};
+ System.debug(MatrixMultiplication.multiply(m1, m2));
+ 5. Currency Converter (USD to INR)
+ public class CurrencyConverter {
+    public static Decimal convertToINR(Decimal usd) {
+        Decimal rate = 83.0;
+        return usd * rate;
+    }
+ }
+ System.debug(CurrencyConverter.convertToINR(10));
+ 6. Fibonacci Series
+ public class FibonacciSeries {
+    public static void printFibonacci(Integer n) {
+        Integer a = 0, b = 1;
+        System.debug(a);
+        System.debug(b);
+        for(Integer i = 2; i < n; i++) {
+            Integer c = a + b;
+            System.debug(c);
+            a = b;
+            b = c;
+        }
+    }
+ }
+ FibonacciSeries.printFibonacci(10);
+ 7. Temperature Conversion (C to F)
+ public class TempConverter {
+    public static Decimal toFahrenheit(Decimal celsius) {
+        return (celsius * 9/5) + 32;
+    }
+}
+
+ System.debug(TempConverter.toFahrenheit(25));
+ 8. Compound & Simple Interest
+ public class InterestCalc {
+    public static Decimal simpleInterest(Decimal p, Decimal r, Decimal t) {
+        return (p * r * t) / 100;
+    }
+    public static Decimal compoundInterest(Decimal p, Decimal r, Decimal t) {
+        return p * Math.pow((1 + r/100), t) - p;
+    }
+ }
+ System.debug(InterestCalc.simpleInterest(1000, 5, 2));
+ System.debug(InterestCalc.compoundInterest(1000, 5, 2));
+ 9. Geometry Area Calculator (Circle)
+ public class GeometryArea {
+    public static Decimal areaOfCircle(Decimal r) {
+        return 3.14 * r * r;
+    }
+ }
+ System.debug(GeometryArea.areaOfCircle(5));

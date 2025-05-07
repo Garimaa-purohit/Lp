@@ -1,0 +1,22 @@
+public class FibonacciSeries {
+
+    // Method to generate and print Fibonacci series up to 'n' terms
+    public static void generateFibonacci(Integer n) {
+        if (n <= 0) {
+            System.debug('Please enter a positive number.');
+            return;
+        }
+
+        Integer first = 0;
+        Integer second = 1;
+        System.debug('Fibonacci Series:');
+        
+        for (Integer i = 1; i <= n; i++) {
+            System.debug(first);
+            Integer next = first + second;
+            first = second;
+            second = next;
+        }
+    }
+}
+FibonacciSeries.generateFibonacci(10); // Change 10 to however many terms you want

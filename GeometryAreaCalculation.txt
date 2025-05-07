@@ -1,0 +1,42 @@
+public class GeometryAreaCalculator {
+
+    // Method to calculate area of a Circle
+    public static Double areaOfCircle(Double radius) {
+        if (radius <= 0) {
+            System.debug('Radius must be positive.');
+            return 0.0;
+        }
+        return Math.PI * radius * radius;
+    }
+
+    // Method to calculate area of a Rectangle
+    public static Double areaOfRectangle(Double length, Double width) {
+        if (length <= 0 || width <= 0) {
+            System.debug('Length and width must be positive.');
+            return 0.0;
+        }
+        return length * width;
+    }
+
+    // Method to calculate area of a Triangle
+    public static Double areaOfTriangle(Double base, Double height) {
+        if (base <= 0 || height <= 0) {
+            System.debug('Base and height must be positive.');
+            return 0.0;
+        }
+        return 0.5 * base * height;
+    }
+
+    // Main method (for testing in Execute Anonymous Window)
+    public static void runCalculation() {
+        Double circleArea = areaOfCircle(5);
+        Double rectangleArea = areaOfRectangle(4, 6);
+        Double triangleArea = areaOfTriangle(3, 8);
+
+        System.debug('Area of Circle (radius 5): ' + circleArea);
+        System.debug('Area of Rectangle (4 x 6): ' + rectangleArea);
+        System.debug('Area of Triangle (base 3, height 8): ' + triangleArea);
+    }
+}
+GeometryAreaCalculator.runCalculation();
+

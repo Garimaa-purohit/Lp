@@ -1,0 +1,27 @@
+5. CurrencyConverterPage.vfp - vfp
+<apex:page controller="CurrencyConverterController">
+    <apex:form >
+        <apex:pageBlock title="Currency Converter">
+
+            <apex:pageBlockSection columns="1">
+                <apex:inputText value="{!amount}" label="Amount" />
+
+                <apex:selectList value="{!fromCurrency}" size="1" label="From Currency">
+                    <apex:selectOptions value="{!currencyOptions}" />
+                </apex:selectList>
+
+                <apex:selectList value="{!toCurrency}" size="1" label="To Currency">
+                    <apex:selectOptions value="{!currencyOptions}" />
+                </apex:selectList>
+
+                <apex:commandButton value="Convert" action="{!convertCurrency}" rerender="resultPanel" />
+            </apex:pageBlockSection>
+
+            <apex:outputPanel id="resultPanel">
+                <apex:outputText value="{!message}" rendered="{!NOT(ISNULL(message))}" 
+                                 style="font-weight:bold; font-size:16px; color:blue;" />
+            </apex:outputPanel>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

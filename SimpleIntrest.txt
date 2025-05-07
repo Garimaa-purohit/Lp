@@ -1,0 +1,51 @@
+public class InterestCalculatorController {
+
+    public Double principal { get; set; }
+    public Double rate { get; set; }
+    public Double time { get; set; }
+
+    public Double simpleInterest { get; private set; }
+    public Double compoundInterest { get; private set; }
+
+    public Boolean showResult { get; set; }
+
+    // Constructor
+    public InterestCalculatorController() {
+        showResult = false;
+    }
+
+    public void calculateInterest() {
+        if (principal != null && rate != null && time != null) {
+            // Simple Interest Formula: SI = (P * R * T) / 100
+            simpleInterest = (principal * rate * time) / 100;
+
+            // Compound Interest Formula: CI = P * ( (1 + R/100)^T ) - P
+            Double amount = principal * Math.pow((1 + rate / 100), time);
+            compoundInterest = amount - principal;
+
+            showResult = true;
+        } else {
+            showResult = false;
+        }
+    }
+}
+<apex:page controller="InterestCalculatorController">
+    <apex:form >
+        <apex:pageBlock title="Interest Calculator">
+            <apex:pageBlockSection columns="2">
+                <apex:inputText value="{!principal}" label="Principal Amount" />
+                <apex:inputText value="{!rate}" label="Rate of Interest (%)" />
+                <apex:inputText value="{!time}" label="Time (years)" />
+            </apex:pageBlockSection>
+
+            <apex:pageBlockButtons>
+                <apex:commandButton value="Calculate" action="{!calculateInterest}" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="Results" rendered="{!showResult}">
+                <apex:outputText value="Simple Interest: {!simpleInterest}" /><br/>
+                <apex:outputText value="Compound Interest: {!compoundInterest}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

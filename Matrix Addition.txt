@@ -1,0 +1,51 @@
+<apex:page controller="ArrayAdderController">
+    <h1>Array Addition App</h1>
+
+    <apex:form>
+        <apex:pageBlock title="Enter Arrays to Add">
+            <apex:pageBlockSection>
+                <apex:inputText value="{!array1}" label="First Array (comma separated)" />
+                <apex:inputText value="{!array2}" label="Second Array (comma separated)" />
+            </apex:pageBlockSection>
+            <apex:commandButton value="Add Arrays" action="{!addArrays}" />
+        </apex:pageBlock>
+
+        <apex:outputPanel rendered="{!NOT(ISNULL(result))}">
+            <h3>Result:</h3>
+            <apex:outputText value="{!result}" />
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>
+
+
+public class ArrayAdderController {
+    public String array1 { get; set; }
+    public String array2 { get; set; }
+    public String result { get; set; }
+
+    public void addArrays() {
+        if (String.isBlank(array1) || String.isBlank(array2)) {
+            result = 'Please enter both arrays.';
+            return;
+        }
+
+        List<String> arr1List = array1.split(',');
+        List<String> arr2List = array2.split(',');
+
+        if (arr1List.size() != arr2List.size()) {
+            result = 'Arrays must be of equal length.';
+            return;
+        }
+
+        List<String> sumList = new List<String>();
+
+        for (Integer i = 0; i < arr1List.size(); i++) {
+            Integer val1 = Integer.valueOf(arr1List[i].trim());
+            Integer val2 = Integer.valueOf(arr2List[i].trim());
+            sumList.add(String.valueOf(val1 + val2));
+        }
+
+        result = String.join(sumList, ', ');
+    }
+}
+ArrayAdditionApp.runTest();
